@@ -42,7 +42,15 @@
 
         } else {
 
-            echo "Email : " . $_POST['email'];
+            $email = $_POST['email'];
+            $lengthOfEmail = strlen($_POST['email']);
+            $tempNumberOfHiddenCharacters = 0.7 * $lengthOfEmail;
+            $numberOfHiddenCharacters = ceil($tempNumberOfHiddenCharacters);
+            $visiblePart = substr($email, 0, $lengthOfEmail - $numberOfHiddenCharacters);
+            $stars = str_repeat('*', $numberOfHiddenCharacters);
+
+            $hiddenEmail = $visiblePart . $stars;
+            echo "Email : $hiddenEmail";
 
             echo "<br>";
 
